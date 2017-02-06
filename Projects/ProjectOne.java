@@ -52,11 +52,11 @@ class Rational{
 
 	}
 	
-	public double getNum(){
+	private double getNum(){
 		return this.num;
 	}
 
-	public double getDenom(){
+	private double getDenom(){
 		return this.denom;
 	}
 	

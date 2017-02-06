@@ -1,1 +1,2 @@
-Just the .java files.
+My Homework from my CS113 Java Class with Prof. Kapleau.
+
