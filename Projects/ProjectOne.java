@@ -1,4 +1,9 @@
 //import java.util.*;
+/*
+Jaime Nufio
+CS113 Section 002
+UCID - Jen25
+*/
 
 public class ProjectOne {
 	public static void main(String[] args){
