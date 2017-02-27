@@ -4,7 +4,7 @@ public class Circle{
 
 	/*
 	Jaime Nufio, Jen25, 31393971
-	CS 113
+	CS 113-02
 	*/
 
 	double r;
