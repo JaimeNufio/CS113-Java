@@ -23,6 +23,11 @@ public class Circle{
 	
 	public static void main(String things[]){
 
+		if (things.length != 1){
+			System.out.println("Error: need only one argument for the number of trials.");
+			System.exit(0);
+		}
+
 		int numthings = Integer.parseInt(things[0]);
 		double countInCircle = 0,countOutCircle=0;
 		Random rand = new Random();

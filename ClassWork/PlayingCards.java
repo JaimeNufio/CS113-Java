@@ -1,7 +1,7 @@
 
 import java.util.Random;
 
-public class PlayingCards{
+class PlayingCards{
 
 	
 	String[] Suit = {"Hearts","Clubs","Diamonds","Spades"}, Value = {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"};
