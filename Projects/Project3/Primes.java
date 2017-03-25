@@ -7,8 +7,7 @@ public class Primes{
 		int[] list = new int[100];
 		for(int i = 0; i<list.length; i++){list[i]=i;}//Initialize the list
 
-		//sieve(list);
-	
+		sieve(list);
 		goldbach(list);
 	
 	}
@@ -19,7 +18,7 @@ public class Primes{
 		int  start = 0, cap = (int) Math.ceil(Math.sqrt(list.length)); //largest number we care to check for
 		int[] newList = list;
 		
-		String primesFound = "";
+		String primesFound = "Primes found between 0 and "+list.length+": ";
 
 		newList[1] = 0; //one is not prime, lets avoid that problem
  
@@ -35,18 +34,23 @@ public class Primes{
 		primesCnt = 0; //Repurpose the variable used as a stepper as a final count of primes.
 		for (int num: newList){
 			if (num != 0)
-				primesFound+=", "+num;
+				primesFound+=num+" ";
 		}
 		System.out.println(primesFound);	
 	}
 
 	public static void goldbach(int[] list){
-		int[] primes = getPrimeList(list);
-		for (int i = 0; i<list.length; i+=2){
-			for (int firstPrime:primes){
+		int[] numList = list, primes = getPrimeList(list);
+		boolean pass = false;
+		for (int i = 4; i<numList.length; i+=2){
+			pass = false;
+			for (int firstPrime:primes){ //compare a set of primes to the number we are on, starting with 4
 				for (int secondPrime:primes){
-					if (firstPrime+secondPrime==list[i] && list[i]>=4){
-						System.out.println(list[i]+" = "+firstPrime+" + "+secondPrime);
+					if (firstPrime+secondPrime==i && !pass){
+						System.out.println(i+" = "+firstPrime+" + "+secondPrime);
+						pass = true;
+						//worth noting, there are multiple solutions to MANY even numbers
+						//the pseudo-continue allows for only the first solution to pass	
 					}
 				}
 			}
@@ -86,7 +90,7 @@ public class Primes{
 		int pos = 0;
 		for (int i = 0; i<newList.length; i++){
 			if (newList[i] != 0){
-				primeArray[pos]=newList[i];
+				primeArray[pos]=i;
 				pos++; //does this count as a hack? I mean there has GOT to be a better way to do this.
 			}
 		}
