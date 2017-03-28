@@ -1,120 +1,116 @@
-public class Primes{
-	
-	public static int primesCnt = 0; //We're working with static functions, so a static variable seems useful.
+public class Primes{												//tab width 4											
 
+	public static int primeCNT = 0; 								//I needed a way to communicate
+																	//a cnt between methods
+	
 	public static void main(String[] schwifty){
-
-		int[] list = new int[100];
-		for(int i = 0; i<list.length; i++){list[i]=i;}//Initialize the list
-
+		
+		int[] list = new int[100000];
+		for(int i = 0;i<list.length;i++){
+			list[i] = i+1;											 //initialize as 1 to X, not 0 to  X-1
+		}
 		sieve(list);
-		goldbach(list);
-	
+		goldbach(list);	
 	}
-
 
 	public static void sieve(int[] list){
-
-		int  start = 0, cap = (int) Math.ceil(Math.sqrt(list.length)); //largest number we care to check for
-		int[] newList = list;
-		
-		String primesFound = "Primes found between 0 and "+list.length+": ";
-
-		newList[1] = 0; //one is not prime, lets avoid that problem
- 
-		for (int i = 0; i<cap; i++){
-			start = findNextPrime(newList);
-			for (int j = start*2; j<list.length;j+=start){
-			//	if (newList[j] != 0)					 //Debug Purposes
-			//		System.out.println(newList[j]+" is not prime");
-				newList[j] = 0;
-			}
-		}
-		
-		primesCnt = 0; //Repurpose the variable used as a stepper as a final count of primes.
-		for (int num: newList){
-			if (num != 0)
-				primesFound+=num+" ";
-		}
-		System.out.println(primesFound);	
-	}
-
-	public static void goldbach(int[] list){
-		int[] numList = list, primes = getPrimeList(list);
-		boolean pass = false;
-		for (int i = 4; i<numList.length; i+=2){
-			pass = false;
-			for (int firstPrime:primes){ //compare a set of primes to the number we are on, starting with 4
-				for (int secondPrime:primes){
-					if (firstPrime+secondPrime==i && !pass){
-						System.out.println(i+" = "+firstPrime+" + "+secondPrime);
-						pass = true;
-						//worth noting, there are multiple solutions to MANY even numbers
-						//the pseudo-continue allows for only the first solution to pass	
-					}
-				}
-			}
-		}	
-	}
-
 	
-	public static int[]  getPrimeList(int[] list){
+		String primeLS = "Primes from 1 to "+list.length+":";		
 
-		//it was specified that I have a function sieve that doesn't return any values. I COULD have easily
-		//had made it so sieve returns a list of primes, but instead, to meet criteria, I'm just going to make this new method do that.
-
-		int  start = 0, cap = (int) Math.ceil(Math.sqrt(list.length)); //largest number we care to check for
-		int[] newList = list;
+		int[] newList = list;		
+		int start = 0, scanNum, lastScanNum;		
 		
-		String primesFound = "";
-
-		newList[1] = 0; //one is not prime, lets avoid that problem
- 
-		for (int i = 0; i<cap; i++){
-			start = findNextPrime(newList);
-			for (int j = start*2; j<list.length;j+=start){
-			//	if (newList[j] != 0)					 //Debug Purposes
-			//		System.out.println(newList[j]+" is not prime");
-				newList[j] = 0;
+		primeCNT = 0; 												//reset global variable 
+		list[0] = 0;										 		//1 is not a prime number
+																	//and if it were, counting it would set everything to 0
+		scanNum = findNextZero(newList);	
+		lastScanNum = -1;
+		
+		while(scanNum != -1){										//the findNextZero method throws -1 when no new primes are found
+			
+			for (int j = (scanNum*2)-1; j<list.length;j+=scanNum){	//start zeroing from the second multiple of the num for this loop 
+				
+					if( newList[j] != 0){							//the -1 is b/c of how we shifted the loop in init
+						newList[j] = 0;	
+					}
+	
 			}
+			lastScanNum = scanNum;
+			scanNum = findNextZero(newList);
 		}
 		
-		primesCnt = 0; //Repurpose the variable used as a stepper as a final count of primes.
-		
-		for (int num: newList){ //Count Primes
-			if (num != 0)	
-				primesCnt++;
+		for (int num: newList){ 									//collect the numbers as a string to be printed
+				if (num != 0)
+					primeLS+=" "+num;
 		}
 
-		int[] primeArray = new int[primesCnt];
-		int pos = 0;
-		for (int i = 0; i<newList.length; i++){
-			if (newList[i] != 0){
-				primeArray[pos]=i;
-				pos++; //does this count as a hack? I mean there has GOT to be a better way to do this.
-			}
-		}
-
-		return primeArray;
-
+		System.out.println(primeLS);
 	}
 
-	public static int findNextPrime(int[] list){ //Seperate function b/c it helps me organize myself
-		int nextPrime = -1, cnt = 0;
-		for (int num:list){
-			if (num !=0){
-				cnt++;
-				if (cnt >= primesCnt){
-					nextPrime = num;
-					primesCnt++;
-					//System.out.println("Next int sweep: "+num); //Debug Purposes
-					//So this sweeps 2 twice, maybe b/c I skip 1?	
-					//quite honestly, I don't care, b/c it works.
-					break;
+	public static void goldbach(int[] list){						//Sigh. b/c Sieve cannot return a value (as per instruction)
+																	//I have to copy the method from above, or create another that they can share...	
+		
+int[] newList = list;		
+
+		String toPrint = "";	
+		int[]  primeList = list;
+		int start = 0, scanNum, lastScanNum;		
+		boolean pass = false;		
+	
+		primeCNT = 0; 												//reset global variable 
+		list[0] = 0;										 		//1 is not a prime number
+																	//and if it were, counting it would set everything to 0
+		scanNum = findNextZero(newList);	
+		lastScanNum = -1;
+		
+		while(scanNum != -1){										//the findNextZero method throws -1 when no new primes are found
+	
+			for (int j = (scanNum*2)-1; j<list.length;j+=scanNum){	//start zeroing from the second multiple of the num for this loop 
+				
+					if( primeList[j] != 0){							//the -1 is b/c of how we shifted the loop in init
+						primeList[j] = 0;	
+					}
+	
+			}
+			lastScanNum = scanNum;
+			scanNum = findNextZero(newList);
+		}	
+
+
+		for (int i = 4; i < list.length; i+=2){						//Start at 4
+			pass = false;
+			for(int firstPrime:primeList){
+				if (isPrime(i - firstPrime,primeList) && !pass) {
+					System.out.println(firstPrime+" + "+(i - firstPrime)+" = "+i);
+					pass = true;
+				}
+			}
+
+		}
+
+		System.out.println(toPrint);	
+	}
+	
+	public static int findNextZero(int[] list){
+		int cnt = 0; 												//#of non-zeros we have seen each loop
+		for (int i = 0; i<list.length; i++){						//step through list
+			if (list[i] !=0){ 										
+				cnt++;												//1 more non-zero spotted	
+				if (cnt > primeCNT){								//exceeds expected amount of non-zero's seen
+					primeCNT++;
+					return list[i];									//increase the non-zero count (Primes)
 				}
 			}
 		}
-		return nextPrime;
+		return -1;													//This really shouldn't happen...
+	}
+
+	public static boolean isPrime(int myNum,int[] primes){
+		for (int num: primes){
+			if (num == myNum)
+				return true;
+		}
+		return false;
 	}
 
 }
