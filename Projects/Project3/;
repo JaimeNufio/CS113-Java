@@ -1,10 +1,5 @@
 public class Primes{		
 
-	/*
-		Jaime Nufio, CS113 Section 2
-		31393971
-	*/
-
 	//tab width 4										
 	
 	/*
@@ -36,7 +31,7 @@ public class Primes{
 		}
 	
 		sieve(list);
-		//goldbach(list);	
+		goldbach(list);	
 	}
 
 	public static void sieve(int[] list){
@@ -94,7 +89,7 @@ public class Primes{
 	
 		if (masterPrimeList.length == 0 ){							//essentially, "have we run the sieve first"?	
 
-			warning(list);	
+			warning();	
 		
 			while(scanNum != -1){			
 				for (int j = (scanNum*2)-1; j<list.length;j+=scanNum){	
@@ -162,10 +157,9 @@ public class Primes{
 		return false;
 	}
 
-	public static void warning(int[] list){ 					//Sometimes it likes to take its sweet time.
-		
-		if (list.length > (Math.pow(10,5))){
-				System.out.println("\nWarning: list is very large. Prime search may take a while.\nThe program is not hung.");
+	public static boolean warning(int[] list){ 					//Sometimes it likes to take its sweet time.
+		if (list.length > (Math.Pow(1,5))){
+				System.out.println("List is very large. Prime search may take a while.\nThe program is not hung.");
 			}
 	}
 
