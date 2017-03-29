@@ -36,7 +36,7 @@ public class Primes{
 		}
 	
 		sieve(list);
-		//goldbach(list);	
+		goldbach(list);	
 	}
 
 	public static void sieve(int[] list){
