@@ -19,7 +19,7 @@ public class ProjectFour {
 	}
 }
 
-class Rational{
+class Rational extends Number implements Comparable<Rational>{
 	
 	double num,denom;
 	
