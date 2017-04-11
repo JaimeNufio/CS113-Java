@@ -8,8 +8,13 @@ UCID - Jen25
 
 class Rational extends Number implements Comparable<Rational>{
 
-///**START OF UNCHANGEABLE CODE**////
+	///**START OF KAPLEAU'S CODE**////
 
+	public static void main(String[] Schwifty){
+
+	}
+
+/*
     public static void main(String[] args) {
 
         Rational a = new Rational(2, 4);
@@ -65,8 +70,10 @@ class Rational extends Number implements Comparable<Rational>{
             }
         }
     }
-//For testing
-///**END OF UNCHANGEABLE CODE**////	
+*/
+
+	///**END OF UNCHANGEABLE CODE**////	
+
 	double num,denom;
 	
 	Rational(double num, double denom){	
