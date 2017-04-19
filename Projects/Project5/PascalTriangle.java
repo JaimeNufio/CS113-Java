@@ -11,13 +11,13 @@ public class PascalTriangle {
     public static void main(String[] args) {
 
         int n = args.length == 1 ? Integer.parseInt(args[0]) : 1;
-
+/*
 		int[] rowAskedFor = Pascal.triangle(n);
 		System.out.print(n+": ");	
 		for (int i = 0; i<rowAskedFor.length; i++){
 			System.out.print(rowAskedFor[i]+" ");
 		}
-
+*/
         for (int i = 1; i <= n; ++i) {
             int[] arr = Pascal.triangle(i);
             System.out.print((i < 10 ? " " : "") + i + ": ");
