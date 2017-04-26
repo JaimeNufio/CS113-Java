@@ -1,0 +1,63 @@
+Whats on the exam:
+	CHP 8 Forward
+	-CHP 8 Interface
+
+		interface someshit{
+			
+			void foo(int someNum);
+		
+		}
+	
+		class FooBar implements someshit{
+
+			int age = 10;
+			
+			void foo(int someOtherNum){
+				age = someOtherNumber;
+			}
+
+		}
+	
+	-CHP 09 Polymorph and Sort 
+		-Inheritence
+		
+		class Base{
+
+			public void foo(){
+				//Something
+			}	
+
+			Derived d = new Derived();
+			d.foo();
+			d.bar();
+
+		}		
+
+		class Derived extends Base{
+			public void bar (){
+				//Something
+			}
+		}
+
+	-ChP 10 try, catch, for exceptions
+	-CHP 11 *Recursive questions (multiple) "Recuring relation to turn into code"
+	-CHP 12 not there, but trival work with generics
+
+	-Practice problems in back of the text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
