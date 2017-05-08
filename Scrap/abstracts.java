@@ -2,6 +2,8 @@ public class abstracts{
 
 	public static void main(String args[]){
 
+		fuck thing  = new fuck();
+		thing.foo();
 	}
 
 }
@@ -17,17 +19,28 @@ abstract class abstr{
 	
 	abstract public int positive();
 	abstract public int negative();
-}
-
-abstract class fuck extends abstr{
-
-}
-
-abstract class shit implements inter{
-	abstract public int positive(){
-		
+	
+	public void foo(){
+		System.out.println();	
 	}
-	abstract public int negative(){
-			
+
+}
+
+class fuck extends abstr{
+
+	public int positive(){
+		return -1;
+	}
+	public int negative(){
+		return -1;
+	}
+}
+
+class shit implements inter{
+	public int positive(){
+		return 1;
+	}
+	public int negative(){
+		return -1;
 	}
 }
